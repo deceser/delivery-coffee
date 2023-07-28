@@ -5,12 +5,14 @@ import Image from "next/image";
 
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 
+import CoffeeCard from "@/src/components/CoffeeCard";
+
 type Props = {};
 
 const HomePage: React.FC = (props: Props) => {
   return (
     <>
-      <main className="mt-[104px] bg-banner bg-cover bg-top bg-no-repeat w-full h-[600px] md:h-[calc(100vh-104px)]">
+      <section className="mt-[104px] bg-banner bg-cover bg-top bg-no-repeat w-full h-[600px] md:h-[calc(100vh-104px)]">
         <div className="flex items-center justify-between w-full max-w-7xl mx-auto px-8 h-full">
           <div className="flex-1 lg:mr-[56px]">
             <h1 className="text-[29px] sm:text-[36px]  lg:text-[48px] font-extrabold text-gray-800 leading-[130%]">
@@ -65,7 +67,17 @@ const HomePage: React.FC = (props: Props) => {
             />
           </figure>
         </div>
-      </main>
+      </section>
+
+      <section className="mb-20">
+        <div className="flex flex-col  justify-between w-full max-w-7xl mx-auto px-8 h-full">
+          <h1 className="text-brow-400 text-[32px]">Our coffee</h1>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[60px] md:gap-[32px] mt-[62px]">
+            <CoffeeCard />
+          </div>
+        </div>
+      </section>
     </>
   );
 };
