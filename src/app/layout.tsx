@@ -1,6 +1,8 @@
 import { Inter, Baloo_2 } from "next/font/google";
 import { Metadata } from "next";
 
+import TheHeader from "@/src/components/TheHeader";
+
 import "./styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,7 +20,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
       </head>
 
-      <body className={baloo.className}>{children}</body>
+      <body className={baloo.className}>
+        <TheHeader />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
