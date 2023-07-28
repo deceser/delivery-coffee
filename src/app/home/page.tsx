@@ -2,14 +2,23 @@
 
 import React from "react";
 import Image from "next/image";
+import { Metadata } from "next";
 
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 
+import { useCart } from "@/src/hooks/useCart";
 import CoffeeCard from "@/src/components/CoffeeCard";
 
 type Props = {};
 
+export const metadata: Metadata = {
+  title: "Coffee Delivery | Home page",
+  description: "Coffee Delivery",
+};
+
 const HomePage: React.FC = (props: Props) => {
+  const { products } = useCart();
+
   return (
     <>
       <section className="mt-[104px] bg-banner bg-cover bg-top bg-no-repeat w-full h-[600px] md:h-[calc(100vh-104px)]">
@@ -74,7 +83,24 @@ const HomePage: React.FC = (props: Props) => {
           <h1 className="text-brow-400 text-[32px]">Our coffee</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[60px] md:gap-[32px] mt-[62px]">
-            <CoffeeCard />
+            {products.map((product) => {
+              return (
+                <CoffeeCard
+                  key={product.id}
+                  id={product.id}
+                  imageUrl={product.imageUrl}
+                  title={product.title}
+                  description={product.description}
+                  price={product.price}
+                  priceFormatted={product.priceFormatted}
+                  slug={product.slug}
+                  active={product.active}
+                  tags={product.tags}
+                  images={product.images}
+                  quantity={product.quantity}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
