@@ -35,7 +35,7 @@ module.exports = {
       },
 
       backgroundImage: {
-        banner: "url(/background-banner.png)",
+        banner: "url(/image/background-banner.png)",
       },
     },
   },
