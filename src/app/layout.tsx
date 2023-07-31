@@ -1,9 +1,12 @@
 import { Inter, Baloo_2 } from "next/font/google";
 import { Metadata } from "next";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import TheHeader from "@/src/components/TheHeader";
 
-import "./styles/globals.css";
+import { CartProvider } from "../context/ProvideContext";
+
+import "@/src/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 const baloo = Baloo_2({ subsets: ["latin"] });
@@ -21,8 +24,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
 
       <body className={baloo.className}>
-        <TheHeader />
-        <main>{children}</main>
+        <CartProvider>
+          <TheHeader />
+          <main>
+            {children}
+            <ToastContainer
+              position="top-left"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
+          </main>
+        </CartProvider>
       </body>
     </html>
   );

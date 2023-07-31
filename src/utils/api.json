@@ -1,0 +1,196 @@
+{
+  "products": [
+    {
+      "id": "8153c5ea-6a20-440d-b8e4-2c4fd8b7e349",
+      "imageUrl": "/svg/expresso_tradicional.svg",
+      "tags": ["Traditional"],
+      "title": "Expresso Traditional",
+      "description": "Traditional coffee made with hot water and ground beans",
+      "price": 9.9,
+      "slug": "expresso-traditional",
+      "active": true,
+      "images": [
+        "https://images.unsplash.com/photo-1541750072-95ea63c38b71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1730&q=80",
+        "https://images.unsplash.com/photo-1663558061026-5006236e1767?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=654&q=80",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    },
+    {
+      "id": "7ec7f23c-0e13-4f86-96f4-e07b1175103a",
+      "imageUrl": "/svg/expresso_americano.svg",
+      "tags": ["Tradicional"],
+      "title": "Expresso Americano",
+      "description": "Diluted espresso, less intense than the traditional one",
+      "price": 12.9,
+      "slug": "expresso-americano",
+      "active": true,
+      "images": [
+        "/image/coffe-01.jpg",
+        "/image/coffe-02.jpg",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    },
+    {
+      "id": "d5b55aaa-543b-4c4c-ac45-7b04d1dc8dc2",
+      "imageUrl": "/svg/expresso_cremoso.svg",
+      "tags": ["Tradicional"],
+      "title": "Expresso Cremoso",
+      "description": "Traditional espresso with creamy foam",
+      "price": 4.9,
+      "slug": "expresso-cremoso",
+      "active": true,
+      "images": [
+        "/image/coffe-01.jpg",
+        "/image/coffe-02.jpg",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    },
+    {
+      "id": "355cea06-a15d-4a14-97a9-550f90e190ca",
+      "imageUrl": "/svg/expresso_gelado.svg",
+      "tags": ["Tradicional", "Gelado"],
+      "title": "Expresso Gelado",
+      "description": "Drink prepared with espresso coffee and ice cubes",
+      "price": 9.9,
+      "slug": "expresso-gelado",
+      "active": true,
+      "images": [
+        "/image/coffe-01.jpg",
+        "/image/coffe-02.jpg",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    },
+    {
+      "id": "6e7900c8-6ec6-4ea3-9456-88dfa115ab85",
+      "imageUrl": "/svg/cafe_com_leite.svg",
+      "tags": ["Tradicional", "Com leite"],
+      "title": "Coffee with milk",
+      "description": "Half and half traditional espresso with steamed milk",
+      "price": 9.9,
+      "slug": "cafe-com-leite",
+      "active": true,
+      "images": [
+        "/image/coffe-01.jpg",
+        "/image/coffe-02.jpg",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    },
+    {
+      "id": "1277559c-c127-4986-aca9-57ec0636676d",
+      "imageUrl": "/svg/latte.svg",
+      "tags": ["Tradicional", "Com leite"],
+      "title": "Latte",
+      "description": "A shot of espresso with twice as much milk and foam",
+      "price": 9.9,
+      "slug": "latte",
+      "active": true,
+      "images": [
+        "/image/coffe-01.jpg",
+        "/image/coffe-02.jpg",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    },
+    {
+      "id": "ca2bfa80-ffaf-45c1-b7d0-85f90b4d981c",
+      "imageUrl": "/svg/macchiato.svg",
+      "tags": ["Tradicional", "Com leite"],
+      "title": "Macchiato",
+      "description": "Espresso coffee mixed with a little hot milk",
+      "price": 9.9,
+      "slug": "macchiato",
+      "active": true,
+      "images": [
+        "/image/coffe-01.jpg",
+        "/image/coffe-02.jpg",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    },
+    {
+      "id": "80b1447b-a00f-4402-a5e6-0a470e2e1404",
+      "imageUrl": "/svg/mocaccino.svg",
+      "tags": ["Tradicional", "Com leite"],
+      "title": "Mocaccino",
+      "description": "Espresso coffee with chocolate sauce, a little milk and foam",
+      "price": 9.9,
+      "slug": "mocaccino",
+      "active": true,
+      "images": [
+        "/image/coffe-01.jpg",
+        "/image/coffe-02.jpg",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    },
+    {
+      "id": "b3d1ed77-b2ba-44f2-a311-117bfca0ff5b",
+      "imageUrl": "/svg/cubano.svg",
+      "tags": ["Especial", "Com leite"],
+      "title": "Cubano",
+      "description": "Iced espresso drink with rum, cream and mint",
+      "price": 9.9,
+      "slug": "cubano",
+      "active": true,
+      "images": [
+        "/image/coffe-01.jpg",
+        "/image/coffe-02.jpg",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    },
+    {
+      "id": "31ec1fff-6693-491c-a1ee-a495cd645649",
+      "imageUrl": "/svg/havaiano.svg",
+      "tags": ["Especial"],
+      "title": "Havaiano",
+      "description": "Sweet drink prepared with coffee and coconut milk",
+      "price": 9.9,
+      "slug": "havaiano",
+      "active": true,
+      "images": [
+        "/image/coffe-01.jpg",
+        "/image/coffe-02.jpg",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    },
+    {
+      "id": "b07f21a1-79f8-4781-b0a4-bcacf132738f",
+      "imageUrl": "/svg/arabe.svg",
+      "tags": ["Especial"],
+      "title": "Arabe",
+      "description": "Drink prepared with Arabic coffee beans and spices",
+      "price": 9.9,
+      "slug": "arabe",
+      "active": true,
+      "images": [
+        "/image/coffe-01.jpg",
+        "/image/coffe-02.jpg",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    },
+    {
+      "id": "64f5086e-19a6-4101-bfeb-b3b4a5b4cf03",
+      "imageUrl": "/svg/irlandes.svg",
+      "tags": ["Especial", "Alcoólico"],
+      "title": "Irlandes",
+      "description": "Drink based on coffee, Irish whiskey, sugar and whipped cream",
+      "price": 9.9,
+      "slug": "irlandes",
+      "active": true,
+      "images": [
+        "/image/coffe-01.jpg",
+        "/image/coffe-02.jpg",
+        "/image/coffe-03.jpg",
+        "/image/coffe-04.jpg"
+      ]
+    }
+  ]
+}

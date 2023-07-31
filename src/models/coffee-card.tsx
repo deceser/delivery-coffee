@@ -8,4 +8,6 @@ export interface ICoffeCard {
   slug: string;
   active: boolean;
   images: string[];
+  quantity: number;
+  priceFormatted: string;
 }
