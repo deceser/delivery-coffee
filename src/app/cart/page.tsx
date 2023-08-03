@@ -13,6 +13,7 @@ import { formatPrice } from "@/src/helpers/farmatPrice";
 import CoffeeCardCart from "@/src/components/CoffeeCardCart";
 import InputUi from "@/src/components/InputUi";
 import InputRadioUI from "@/src/components/InputRadioUI";
+import { GoogleBtn } from "@/src/modules/firebase-auth";
 
 type Props = {};
 
@@ -77,15 +78,17 @@ const Cart = (props: Props) => {
       <div className="flex-1">
         <h1 className="text-brow-400 text-[18px] font-bold">Complete your order</h1>
 
-        <div className="bg-gray-100 p-[40px] mt-[15px] rounded-[6px]">
+        <div className="bg-gray-100 p-[40px] mt-[15px] rounded-[6px] flex items-center justify-between">
+          <div className="flex">
+            <GoogleBtn />
+          </div>
+
           <div className="flex items-start gap-[8px]">
             <MapPinLine size={22} className="text-yellow-700" />
             <div className="flex flex-col items-start font-roboto">
               <h1 className="text-[16px] text-brow-300">Personal data</h1>
             </div>
           </div>
-
-          {/*There should be Google authorization*/}
         </div>
 
         <div className="bg-gray-100 p-[40px] mt-[15px] rounded-[6px]">
