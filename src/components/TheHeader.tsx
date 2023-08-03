@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MapPin, ShoppingCartSimple } from "phosphor-react";
 
 import { useCart } from "@/src/hooks/useCart";
+import Location from "../modules/location/components/UserLocation";
 
 type Props = {};
 
@@ -25,13 +26,7 @@ const TheHeader = (props: Props) => {
         </Link>
 
         <div className="flex items-center gap-[12px]">
-          <button
-            type="button"
-            className="flex items-center gap-[4px] p-[8px] text-purple-500 rounded-[6px] select-none bg-purple-100 transition-colors hover:text-white hover:bg-purple-500"
-          >
-            <MapPin size={22} weight="fill" />
-            Location
-          </button>
+          <Location />
 
           <Link
             href="/cart"

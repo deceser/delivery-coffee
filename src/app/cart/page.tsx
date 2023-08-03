@@ -3,17 +3,16 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import axios from "axios";
-import { toast } from "react-toastify";
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
 
-import { ICoffeCard } from "@/src/models/coffee-card";
 import { useCart } from "@/src/hooks/useCart";
+import { ICoffeCard } from "@/src/models/coffee-card";
 import { formatPrice } from "@/src/helpers/farmatPrice";
-import CoffeeCardCart from "@/src/components/CoffeeCardCart";
+import { GoogleBtn } from "@/src/modules/firebase-auth";
+
 import InputUi from "@/src/components/InputUi";
 import InputRadioUI from "@/src/components/InputRadioUI";
-import { GoogleBtn } from "@/src/modules/firebase-auth";
+import CoffeeCardCart from "@/src/components/CoffeeCardCart";
 
 type Props = {};
 
