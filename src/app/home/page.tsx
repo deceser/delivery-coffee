@@ -21,10 +21,10 @@ const HomePage: React.FC = (props: Props) => {
 
   return (
     <>
-      <section className="mt-[104px] bg-banner bg-cover bg-top bg-no-repeat w-full h-[600px] md:h-[calc(100vh-104px)]">
+      <section className="mt-[104px] bg-banner bg-cover bg-top bg-no-repeat w-full h-[600px] md:h-[calc(100vh-105px)]">
         <div className="flex items-center justify-between w-full max-w-7xl mx-auto px-8 h-full">
-          <div className="flex-1 lg:mr-[56px]">
-            <h1 className="text-[29px] sm:text-[36px]  lg:text-[48px] font-extrabold text-gray-800 leading-[130%]">
+          <div className="flex-1 lg:mr-[56px] mt-[55px]">
+            <h1 className="text-[29px] sm:text-[36px]  lg:text-[48px]  font-extrabold text-gray-800 leading-[130%]">
               Find the perfect coffee for any time of day
             </h1>
             <p className="mt-[16px] font-roboto font-normal text-[18px] sm:text-[20px] text-brow-400">
