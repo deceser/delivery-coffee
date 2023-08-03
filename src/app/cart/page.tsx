@@ -8,7 +8,6 @@ import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-re
 import { useCart } from "@/src/hooks/useCart";
 import { ICoffeCard } from "@/src/models/coffee-card";
 import { formatPrice } from "@/src/helpers/farmatPrice";
-import { GoogleBtn } from "@/src/modules/firebase-auth";
 
 import InputUi from "@/src/components/ui/InputUi";
 import InputRadioUI from "@/src/components/ui/InputRadioUI";
@@ -78,10 +77,6 @@ const Cart = (props: Props) => {
         <h1 className="text-brow-400 text-[18px] font-bold">Complete your order</h1>
 
         <div className="bg-gray-100 p-[40px] mt-[15px] rounded-[6px] flex items-center justify-between">
-          <div className="flex">
-            <GoogleBtn />
-          </div>
-
           <div className="flex items-start gap-[8px]">
             <MapPinLine size={22} className="text-yellow-700" />
             <div className="flex flex-col items-start font-roboto">
