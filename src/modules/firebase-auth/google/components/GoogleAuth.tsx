@@ -1,12 +1,13 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { GoogleLogo } from "phosphor-react";
+
+import { UserItem } from "./UserItem";
 
 import { IUser } from "@/src/models/user";
 import { useUser } from "../hooks/useUser";
 import { googleProvider, auth } from "../../config";
 
-const GoogleBtn = () => {
+const GoogleAuth = () => {
   const { user, updateUser } = useUser();
   const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -43,23 +44,22 @@ const GoogleBtn = () => {
   return (
     <>
       {user ? (
-        <button
-          onClick={handleLogout}
-          className="bg-red-500 flex gap-3 items-center text-center w-full py-3 rounded-lg px-4 text-white  text-[20px] hover:brightness-90 transition-all"
-        >
-          Log Out
-        </button>
+        <UserItem
+          photoURL={user.photoURL}
+          email={user.email}
+          displayName={user.displayName}
+          handleLogout={handleLogout}
+        />
       ) : (
         <button
           onClick={handleGoogleLogin}
-          className="bg-purple-500 flex gap-3 items-center text-center w-full py-3 rounded-lg px-4 text-white  text-[20px] hover:brightness-90 transition-all"
+          className="flex items-center gap-[4px] p-[8px] text-white rounded-[6px] select-none bg-purple-500 hover:brightness-90 transition-all"
         >
-          {<GoogleLogo size={25} />}
-          Google
+          Log In
         </button>
       )}
     </>
   );
 };
 
-export { GoogleBtn };
+export { GoogleAuth };

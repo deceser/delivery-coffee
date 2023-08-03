@@ -10,9 +10,9 @@ import { ICoffeCard } from "@/src/models/coffee-card";
 import { formatPrice } from "@/src/helpers/farmatPrice";
 import { GoogleBtn } from "@/src/modules/firebase-auth";
 
-import InputUi from "@/src/components/InputUi";
-import InputRadioUI from "@/src/components/InputRadioUI";
-import CoffeeCardCart from "@/src/components/CoffeeCardCart";
+import InputUi from "@/src/components/ui/InputUi";
+import InputRadioUI from "@/src/components/ui/InputRadioUI";
+import CoffeeCardCart from "@/src/components/block/CoffeeCardCart";
 
 type Props = {};
 

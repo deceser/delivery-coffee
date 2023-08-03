@@ -51,4 +51,4 @@ const LocationComponent: React.FC = () => {
   );
 };
 
-export default LocationComponent;
+export { LocationComponent };

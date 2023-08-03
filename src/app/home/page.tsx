@@ -7,7 +7,7 @@ import { Metadata } from "next";
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 
 import { useCart } from "@/src/hooks/useCart";
-import CoffeeCard from "@/src/components/CoffeeCard";
+import CoffeeCard from "@/src/components/block/CoffeeCard";
 
 type Props = {};
 
