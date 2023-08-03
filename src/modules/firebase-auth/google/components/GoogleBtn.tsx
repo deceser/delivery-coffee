@@ -3,8 +3,8 @@ import { toast } from "react-toastify";
 import { GoogleLogo } from "phosphor-react";
 
 import { IUser } from "@/src/models/user";
-import { googleProvider, auth } from "../../config";
 import { useUser } from "../hooks/useUser";
+import { googleProvider, auth } from "../../config";
 
 const GoogleBtn = () => {
   const { user, updateUser } = useUser();
@@ -24,8 +24,6 @@ const GoogleBtn = () => {
         photoURL,
       };
       updateUser(userData);
-
-      console.log("Logged in user:", userData);
 
       localStorage.setItem("userData", JSON.stringify(userData));
     } catch (error) {
