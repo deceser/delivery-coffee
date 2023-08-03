@@ -36,10 +36,10 @@ const LocationComponent: React.FC = () => {
   return (
     <div>
       {currentLocationData ? (
-        <div className="flex items-center gap-[4px] p-[8px] text-purple-500 rounded-[6px] select-none bg-purple-100">
+        <div className="flex items-center gap-[4px] p-[8px] text-purple-500 rounded-[6px] select-none bg-purple-100 max-sm:text-[11px] max-sm:font-bold">
           <MapPin size={22} weight="fill" />
-          {currentLocationData.address.city || "N/A"},{" "}
-          {currentLocationData.address.country || "N/A"}
+          <p> {currentLocationData.address.city || "N/A"}, </p>
+          <p>{currentLocationData.address.country || "N/A"}</p>
         </div>
       ) : (
         <div className="flex items-center gap-[4px] p-[8px] text-purple-500 rounded-[6px] select-none bg-purple-100">
@@ -51,4 +51,4 @@ const LocationComponent: React.FC = () => {
   );
 };
 
-export default LocationComponent;
+export { LocationComponent };

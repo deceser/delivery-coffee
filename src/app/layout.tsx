@@ -2,7 +2,7 @@ import { Inter, Baloo_2 } from "next/font/google";
 import { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import TheHeader from "@/src/components/TheHeader";
+import TheHeader from "@/src/components/block/TheHeader";
 
 import { CartProvider } from "../context/ProvideContext";
 
