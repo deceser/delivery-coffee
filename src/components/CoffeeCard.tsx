@@ -30,6 +30,10 @@ const CoffeeCard: React.FC<ICoffeCard> = ({ ...props }) => {
 
   // ---
 
+  const handleSeeProduct = () => {
+    toast.warning("Sorry, this feature is currently unavailable");
+  };
+
   return (
     <div className="transition duration-300 ease-in-out hover:scale-105 bg-gray-100 rounded-tl-[6px] rounded-tr-[36px] rounded-bl-[36px] rounded-br-[6px] flex flex-col items-center pb-[23px]">
       <Image
@@ -96,7 +100,8 @@ const CoffeeCard: React.FC<ICoffeCard> = ({ ...props }) => {
       </div>
       <div className="px-[24px] w-full">
         <Link
-          href={"/produto/${slug}"}
+          onClick={handleSeeProduct}
+          href={""}
           className="mt-5 bg-purple-500 block text-center w-full py-3 rounded-lg px-4 text-white font-roboto text-[15px] hover:brightness-90 transition-all"
         >
           See product
