@@ -1,4 +1,5 @@
 export interface ICoffeCard {
+  subTotal: string;
   id: string;
   imageUrl: string;
   tags: string[];
