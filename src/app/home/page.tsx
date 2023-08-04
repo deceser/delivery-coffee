@@ -98,6 +98,7 @@ const HomePage: React.FC = (props: Props) => {
                   tags={product.tags}
                   images={product.images}
                   quantity={product.quantity}
+                  subTotal={""}
                 />
               );
             })}

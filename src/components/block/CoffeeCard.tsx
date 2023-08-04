@@ -89,6 +89,7 @@ const CoffeeCard: React.FC<ICoffeCard> = ({ ...props }) => {
                 slug,
                 images,
                 priceFormatted,
+                subTotal: "",
               })
             }
             className="text-white bg-gray-500 p-[8px] rounded-[6px] hover:brightness-90 transition-all"

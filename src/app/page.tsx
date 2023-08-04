@@ -1,5 +1,14 @@
+import React from "react";
 import HomePage from "./home/page";
 
-export default function App() {
-  return <>{/*should be added in the future*/}</>;
-}
+type Props = {};
+
+const page = ({ ...Props }: Props) => {
+  return (
+    <>
+      <HomePage />
+    </>
+  );
+};
+
+export default page;

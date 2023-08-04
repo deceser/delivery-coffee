@@ -16,7 +16,7 @@ const TheHeader = (props: Props) => {
   return (
     <header className="w-full z-50 fixed left-0 top-0 bg-white  ">
       <div className="w-full max-w-7xl mx-auto px-8 h-[104px] flex items-center justify-between ">
-        <Link href="/home">
+        <Link href="/">
           <figure>
             <img
               src="/svg/logo.svg"

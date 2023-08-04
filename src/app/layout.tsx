@@ -1,10 +1,10 @@
-import { Inter, Baloo_2 } from "next/font/google";
 import { Metadata } from "next";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Inter, Baloo_2 } from "next/font/google";
+
+import Toastify from "./Toastify";
 import TheHeader from "@/src/components/block/TheHeader";
 
-import { CartProvider } from "../context/ProvideContext";
+import { CartProvider } from "@/src/context/ProvideContext";
 
 import "@/src/styles/globals.css";
 
@@ -26,21 +26,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={baloo.className}>
         <CartProvider>
           <TheHeader />
-          <main>
-            {children}
-            <ToastContainer
-              position="top-left"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-            />
-          </main>
+          <Toastify />
+          <main>{children}</main>
         </CartProvider>
       </body>
     </html>
