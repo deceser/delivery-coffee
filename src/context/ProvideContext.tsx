@@ -9,6 +9,7 @@ import { ICoffeCard } from "@/src/models/coffee-card";
 
 interface CartContextData {
   free: number;
+  load: boolean;
   cart: ICoffeCard[];
   products: ICoffeCard[];
 
@@ -21,8 +22,9 @@ export const CartContext = createContext({} as CartContextData);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = React.useState<ICoffeCard[]>([]);
-  const [free, setFree] = React.useState(7.8);
+  const [free, setFree] = React.useState<number>(7.8);
   const [products, setProducts] = React.useState<ICoffeCard[]>([]);
+  const [load, setLoad] = React.useState<boolean>(false);
 
   const handleAddNewProductInCart = (product: ICoffeCard) => {
     const findProduct = cart.find((p) => p.id === product.id);
@@ -87,6 +89,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   // ----- get -----
 
   const getProducts = () => {
+    setLoad(true);
     api
       .get("/products")
       .then((response) => {
@@ -97,6 +100,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        setLoad(false);
       });
   };
 
@@ -113,6 +119,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         updateProductAmount,
         removeProduct,
         products,
+        load,
       }}
     >
       {children}
