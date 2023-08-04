@@ -1,5 +1,9 @@
-import HomePage from "./home/page";
+import React from "react";
 
-export default function App() {
-  return <>{/*should be added in the future*/}</>;
-}
+type Props = {};
+
+const page = ({ ...Props }: Props) => {
+  return <div>page</div>;
+};
+
+export default page;
