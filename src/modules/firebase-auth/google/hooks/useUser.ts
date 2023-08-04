@@ -10,9 +10,11 @@ if (!secretKey) {
 
 export const useUser = () => {
   const [user, setUser] = React.useState<IUser | null>(null);
+  const [load, setLoad] = React.useState<boolean>(false);
 
   // Load user data from localStorage on initial render
   React.useEffect(() => {
+    setLoad(true);
     const encryptedDataFromLocalStorage = localStorage.getItem("userData");
     if (encryptedDataFromLocalStorage) {
       try {
@@ -21,6 +23,8 @@ export const useUser = () => {
       } catch (error) {
         console.error("Error parsing user data:", error);
         setUser(null);
+      } finally {
+        setLoad(false);
       }
     }
   }, []);
@@ -39,5 +43,5 @@ export const useUser = () => {
     setUser(userData);
   };
 
-  return { user, updateUser };
+  return { user, updateUser, load };
 };

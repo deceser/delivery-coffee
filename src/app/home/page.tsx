@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Metadata } from "next";
+import Head from "next/head";
 
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 
@@ -11,16 +11,14 @@ import CoffeeCard from "@/src/components/block/CoffeeCard";
 
 type Props = {};
 
-export const metadata: Metadata = {
-  title: "Coffee Delivery | Home page",
-  description: "Coffee Delivery",
-};
-
 const HomePage: React.FC = (props: Props) => {
-  const { products } = useCart();
+  const { products, load } = useCart();
 
   return (
     <>
+      <Head>
+        <title>Coffee Delivery | Home page</title>
+      </Head>
       <section className="mt-[104px] bg-banner bg-cover bg-top bg-no-repeat w-full h-[600px] md:h-[calc(100vh-105px)]">
         <div className="flex items-center justify-between w-full max-w-7xl mx-auto px-8 h-full">
           <div className="flex-1 lg:mr-[56px] mt-[55px]">
@@ -81,27 +79,31 @@ const HomePage: React.FC = (props: Props) => {
       <section className="mb-20">
         <div className="flex flex-col  justify-between w-full max-w-7xl mx-auto px-8 h-full">
           <h1 className="text-brow-400 text-[32px]">Our coffee</h1>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[60px] md:gap-[32px] mt-[62px]">
-            {products.map((product) => {
-              return (
-                <CoffeeCard
-                  key={product.id}
-                  id={product.id}
-                  imageUrl={product.imageUrl}
-                  title={product.title}
-                  description={product.description}
-                  price={product.price}
-                  priceFormatted={product.priceFormatted}
-                  slug={product.slug}
-                  active={product.active}
-                  tags={product.tags}
-                  images={product.images}
-                  quantity={product.quantity}
-                  subTotal={""}
-                />
-              );
-            })}
+            {load || products.length === 0
+              ? Array.from({ length: 7 }, (_, index) => (
+                  <div
+                    key={index}
+                    className=" bg-gray-100 rounded-tl-[6px] rounded-tr-[36px] rounded-bl-[36px] rounded-br-[6px] pb-[23px] h-[400px] w-[280px]"
+                  ></div>
+                ))
+              : products.map((product) => (
+                  <CoffeeCard
+                    key={product.id}
+                    id={product.id}
+                    imageUrl={product.imageUrl}
+                    title={product.title}
+                    description={product.description}
+                    price={product.price}
+                    priceFormatted={product.priceFormatted}
+                    slug={product.slug}
+                    active={product.active}
+                    tags={product.tags}
+                    images={product.images}
+                    quantity={product.quantity}
+                    subTotal={""}
+                  />
+                ))}
           </div>
         </div>
       </section>
