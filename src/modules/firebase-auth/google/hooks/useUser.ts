@@ -5,7 +5,7 @@ import { encryptData, decryptData } from "@/src/helpers/encryption";
 const secretKey = process.env.NEXT_PUBLIC_SECRET_KEY;
 
 if (!secretKey) {
-  throw new Error("NEXT_PRIVAT_SECRET_KEY environment variable is not defined.");
+  throw new Error("NEXT_PUBLIC_SECRET_KEY environment variable is not defined.");
 }
 
 export const useUser = () => {
