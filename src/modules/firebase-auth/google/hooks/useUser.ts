@@ -23,10 +23,9 @@ export const useUser = () => {
       } catch (error) {
         console.error("Error parsing user data:", error);
         setUser(null);
-      } finally {
-        setLoad(false);
       }
     }
+    setLoad(false);
   }, []);
 
   // Encrypt and save user data to localStorage whenever the user state changes

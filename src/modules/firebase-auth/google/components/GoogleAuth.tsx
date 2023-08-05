@@ -11,6 +11,8 @@ const GoogleAuth = () => {
   const { user, updateUser, load } = useUser();
   const [loading, setLoading] = React.useState<boolean>(false);
 
+  console.log(load);
+
   const handleGoogleLogin = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event?.preventDefault();
 
@@ -30,9 +32,8 @@ const GoogleAuth = () => {
     } catch (error) {
       console.error("Error during Google login:", error);
       toast.error("Error during Google login");
-    } finally {
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   const handleLogout = () => {
@@ -43,7 +44,7 @@ const GoogleAuth = () => {
 
   return (
     <>
-      {!load ? (
+      {load || loading ? (
         <button
           className="flex items-center gap-[4px] p-[8px] text-white rounded-[6px] select-none bg-purple-500"
           disabled
