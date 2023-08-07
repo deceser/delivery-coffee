@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import Product from "..";
 import { api } from "@/src/lib/axios";
 import { ICoffeCard } from "@/src/models/coffee-card";
+import { formatPrice } from "@/src/helpers/farmatPrice";
 
 type Props = {
   params: {
@@ -35,6 +36,9 @@ export const generateMetadata = async ({ params: { id } }: Props): Promise<Metad
 const ProductPage = async ({ params: { id } }: Props) => {
   // const id = params.id;
   const product: ICoffeCard = await getProduct(id);
+
+  const priceFormatted = formatPrice(product.price);
+
   return (
     <Product
       id={product.id}
@@ -45,7 +49,7 @@ const ProductPage = async ({ params: { id } }: Props) => {
       price={product.price}
       active={product.active}
       slug={product.slug}
-      priceFormatted={product.priceFormatted}
+      priceFormatted={priceFormatted}
       images={product.images}
     />
   );

@@ -6,6 +6,7 @@ import { useCart } from "@/src/hooks/useCart";
 
 import { ArrowRight, Minus, Phone, Plus, ShareNetwork, ShoppingCartSimple } from "phosphor-react";
 import { toast } from "react-toastify";
+import { formatPrice } from "@/src/helpers/farmatPrice";
 
 type Props = {
   id: string;
