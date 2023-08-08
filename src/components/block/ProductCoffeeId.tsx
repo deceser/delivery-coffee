@@ -1,24 +1,23 @@
 "use client";
 
 import React from "react";
+import { toast } from "react-toastify";
+import { ArrowRight, Minus, Phone, Plus, ShareNetwork, ShoppingCartSimple } from "phosphor-react";
 
 import { useCart } from "@/src/hooks/useCart";
-
-import { ArrowRight, Minus, Phone, Plus, ShareNetwork, ShoppingCartSimple } from "phosphor-react";
-import { toast } from "react-toastify";
-import { formatPrice } from "@/src/helpers/farmatPrice";
+import { useCount } from "@/src/hooks/useCount";
 
 type Props = {
   id: string;
-  imageUrl: string;
-  tags: string[];
+  slug: string;
   title: string;
+  imageUrl: string;
   description: string;
+  tags: string[];
+  images: string[];
   price: number;
   active: boolean;
-  slug: string;
   priceFormatted: string;
-  images: string[];
 };
 
 const Product = ({ ...props }: Props) => {
@@ -26,26 +25,16 @@ const Product = ({ ...props }: Props) => {
     props;
 
   const { handleAddNewProductInCart } = useCart();
-  const [count, setCount] = React.useState(1);
-
-  const handleIncrementProduct = () => {
-    setCount(count + 1);
-  };
-
-  const handleDecrementProduct = () => {
-    if (count < 2) {
-      return toast.warning("To add to cart you need at least one quantity!");
-    }
-
-    setCount(count - 1);
-  };
+  const { count, setCount, handleDecrementProduct, handleIncrementProduct } = useCount(1);
 
   const handleCreateNewProductInCart = (product: any) => {
     handleAddNewProductInCart(product);
     setCount(1);
   };
 
-  const handleShareProduct = async () => {};
+  const handleClickShareNetwork = () => {
+    toast.warn("Sorry, this feature is currently unavailable");
+  };
 
   return (
     <section className="bg-banner bg-cover bg-top bg-no-repeat w-full">
@@ -53,7 +42,10 @@ const Product = ({ ...props }: Props) => {
         <div className="grid grid-cols-2 gap-5">
           {images.map((image) => {
             return (
-              <div key={image} className="w-[250px] h-[250px] overflow-hidden rounded-[6px]">
+              <div
+                key={image}
+                className="w-[250px] h-[250px] overflow-hidden rounded-[6px] max-sm:h-[135px] max-sm:w-[135px]"
+              >
                 <img
                   className="w-full h-full object-cover hover:scale-125 transition-all duration-300"
                   src={image}
@@ -120,9 +112,9 @@ const Product = ({ ...props }: Props) => {
 
               <button
                 type="button"
-                onClick={() => handleShareProduct()}
                 title="Clique para compartilhar página"
                 className="text-white bg-purple-500 w-f px-2 py-2 rounded-full w-[50px] h-[50px] flex items-center justify-center hover:brightness-90 transition-all"
+                onClick={handleClickShareNetwork}
               >
                 <ShareNetwork size={22} />
               </button>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import Product from "..";
+import Product from "@/src/components/block/ProductCoffeeId";
 import { api } from "@/src/lib/axios";
 import { ICoffeCard } from "@/src/models/coffee-card";
 import { formatPrice } from "@/src/helpers/farmatPrice";
@@ -42,15 +42,15 @@ const ProductPage = async ({ params: { id } }: Props) => {
   return (
     <Product
       id={product.id}
-      imageUrl={product.imageUrl}
-      tags={product.tags}
+      slug={product.slug}
       title={product.title}
+      imageUrl={product.imageUrl}
       description={product.description}
+      tags={product.tags}
+      images={product.images}
       price={product.price}
       active={product.active}
-      slug={product.slug}
       priceFormatted={priceFormatted}
-      images={product.images}
     />
   );
 };
