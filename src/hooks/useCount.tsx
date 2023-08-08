@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-export function useCount(initialValue: number) {
+export const useCount = (initialValue: number) => {
   const [count, setCount] = React.useState<number>(initialValue);
 
   const handleIncrementProduct = () => {
@@ -22,4 +22,4 @@ export function useCount(initialValue: number) {
     handleDecrementProduct,
     handleIncrementProduct,
   };
-}
+};

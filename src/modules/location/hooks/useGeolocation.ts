@@ -55,4 +55,4 @@ const useLocationData = () => {
   return { loading, latitude, longitude, locationData, getLocation };
 };
 
-export default useLocationData;
+export { useLocationData };

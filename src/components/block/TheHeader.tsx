@@ -5,8 +5,8 @@ import Link from "next/link";
 import { ShoppingCartSimple } from "phosphor-react";
 
 import { useCart } from "@/src/hooks/useCart";
-import { LocationComponent } from "@/src/modules/location";
-import { GoogleAuth } from "@/src/modules/firebase-auth";
+import { Location } from "@/src/modules/location";
+import { GoogleAuth } from "@/src/modules/firebase-auth/google";
 
 type Props = {};
 
@@ -27,7 +27,7 @@ const TheHeader = (props: Props) => {
         </Link>
 
         <div className="flex items-center gap-[12px]">
-          <LocationComponent />
+          <Location />
           <GoogleAuth />
           <Link
             href="/cart"

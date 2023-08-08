@@ -52,4 +52,4 @@ const UserItem = ({ ...props }: Props) => {
   );
 };
 
-export { UserItem };
+export default UserItem;

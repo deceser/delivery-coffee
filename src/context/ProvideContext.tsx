@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext } from "react";
+import React from "react";
 import { toast } from "react-toastify";
 
 import { api } from "@/src/lib/axios";
@@ -18,7 +18,7 @@ interface CartContextData {
   removeProduct: (productId: string) => void;
 }
 
-export const CartContext = createContext({} as CartContextData);
+export const CartContext = React.createContext({} as CartContextData);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = React.useState<ICoffeCard[]>([]);
