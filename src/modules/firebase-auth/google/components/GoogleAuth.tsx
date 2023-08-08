@@ -5,7 +5,7 @@ import { UserItem } from "./UserItem";
 
 import { IUser } from "@/src/models/user";
 import { useUser } from "../hooks/useUser";
-import { googleProvider, auth } from "../../config";
+import { googleProvider, auth, db } from "../../config";
 
 const GoogleAuth = () => {
   const { user, updateUser, load } = useUser();
@@ -16,6 +16,7 @@ const GoogleAuth = () => {
 
     try {
       setLoading(true);
+
       const result = await auth.signInWithPopup(googleProvider);
       const { uid, displayName, email, photoURL } = result.user as IUser;
       const userData: IUser = {
@@ -24,8 +25,14 @@ const GoogleAuth = () => {
         email,
         photoURL,
       };
-      updateUser(userData);
 
+      await db.collection("users").doc(uid).set({
+        displayName,
+        email,
+        photoURL,
+      });
+
+      updateUser(userData);
       localStorage.setItem("userData", JSON.stringify(userData));
     } catch (error) {
       console.error("Error during Google login:", error);
