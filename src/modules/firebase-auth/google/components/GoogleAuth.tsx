@@ -11,8 +11,6 @@ const GoogleAuth = () => {
   const { user, updateUser, load } = useUser();
   const [loading, setLoading] = React.useState<boolean>(false);
 
-  console.log(load);
-
   const handleGoogleLogin = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event?.preventDefault();
 
