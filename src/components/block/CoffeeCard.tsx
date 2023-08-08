@@ -1,38 +1,18 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "react-toastify";
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 
 import { useCart } from "@/src/hooks/useCart";
+import { useCount } from "@/src/hooks/useCount";
 import { ICoffeCard } from "@/src/models/coffee-card";
 
 const CoffeeCard: React.FC<ICoffeCard> = ({ ...props }) => {
   const { id, imageUrl, tags, title, description, price, active, slug, priceFormatted, images } =
     props;
+
   const { handleAddNewProductInCart } = useCart();
-
-  // ---
-
-  const [count, setCount] = React.useState<number>(1);
-
-  const handleAddNumberInCount = () => {
-    setCount(count + 1);
-  };
-
-  const handleRemoveNumberInCount = () => {
-    if (count < 2) {
-      return toast.warning("To add to cart, you need at least one quantity!");
-    }
-
-    setCount(count - 1);
-  };
-
-  // ---
-
-  const handleSeeProduct = () => {
-    toast.warning("Sorry, this feature is currently unavailable");
-  };
+  const { count, handleDecrementProduct, handleIncrementProduct } = useCount(1);
 
   return (
     <div className="transition duration-300 ease-in-out hover:scale-105 bg-gray-100 rounded-tl-[6px] rounded-tr-[36px] rounded-bl-[36px] rounded-br-[6px] flex flex-col items-center pb-[23px]">
@@ -66,11 +46,11 @@ const CoffeeCard: React.FC<ICoffeCard> = ({ ...props }) => {
 
         <div className="flex items-center gap-[8px]">
           <div className="bg-gray-200 w-[72px] h-[38px] flex items-center justify-evenly rounded-[6px] font-roboto text-purple-500">
-            <button onClick={handleRemoveNumberInCount} type="button">
+            <button onClick={handleDecrementProduct} type="button">
               <Minus size={14} weight="fill" />
             </button>
             <span className="text-gray-800 select-none">{count}</span>
-            <button onClick={handleAddNumberInCount} type="button">
+            <button onClick={handleIncrementProduct} type="button">
               <Plus size={14} weight="fill" />
             </button>
           </div>
@@ -101,8 +81,7 @@ const CoffeeCard: React.FC<ICoffeCard> = ({ ...props }) => {
       </div>
       <div className="px-[24px] w-full">
         <Link
-          onClick={handleSeeProduct}
-          href={""}
+          href={`/product/${id}`}
           className="mt-5 bg-purple-500 block text-center w-full py-3 rounded-lg px-4 text-white font-roboto text-[15px] hover:brightness-90 transition-all"
         >
           See product
