@@ -81,14 +81,6 @@ const SelectedCoffeesCart = ({ ...props }: Props) => {
           </div>
         </div>
       )}
-
-      <button
-        className="mt-[24px] bg-yellow-500 text-white w-full py-[12px] uppercase text-[14px] rounded-[6px] font-roboto font-normal hover:brightness-90 transition-all cursor-pointer disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:brightness-100"
-        type="button"
-        disabled={cart.length <= 0}
-      >
-        Confirm order
-      </button>
     </div>
   );
 };

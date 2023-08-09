@@ -1,11 +1,15 @@
 import React from "react";
 import { MapPinLine } from "phosphor-react";
 
+import { useCart } from "@/src/hooks/useCart";
+
 import InputUi from "../ui/InputUi";
 
 type Props = {};
 
 const PersonalData = ({ ...props }: Props) => {
+  const { addressValidation, handleOnChange } = useCart();
+
   return (
     <div className="bg-gray-100 p-[40px] mt-[15px] rounded-[6px] flex-col items-center justify-between">
       <div className="flex items-start gap-[8px]">
@@ -18,10 +22,26 @@ const PersonalData = ({ ...props }: Props) => {
 
       <form className="mt-[32px] font-roboto text-gray-300 flex flex-col gap-[16px]">
         <div className="flex items-center gap-[16px]">
-          <InputUi placeholder="First Name" />
-          <InputUi placeholder="Second Name (optional)" />
+          <InputUi
+            name="firstName"
+            placeholder="First Name"
+            value={addressValidation.firstName}
+            handleOnChange={handleOnChange}
+          />
+          <InputUi
+            name="secondName"
+            placeholder="Second Name (optional)"
+            value={addressValidation.secondName}
+            handleOnChange={handleOnChange}
+          />
         </div>
-        <InputUi placeholder="Mobile number" />
+        <InputUi
+          name="mobileNumber"
+          placeholder="Mobile number"
+          value={addressValidation.mobileNumber}
+          handleOnChange={handleOnChange}
+          read={true}
+        />
       </form>
     </div>
   );
