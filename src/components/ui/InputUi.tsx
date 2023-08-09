@@ -17,7 +17,6 @@ const InputUi = ({ ...props }: Props) => {
       name={name}
       value={value}
       onChange={handleOnChange}
-      readOnly={read}
     />
   );
 };

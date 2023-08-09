@@ -29,6 +29,7 @@ export const GoogleAuth = () => {
       };
 
       await db.collection("users").doc(uid).set({
+        uid,
         displayName,
         email,
         photoURL,

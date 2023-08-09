@@ -12,6 +12,9 @@ import DeliveryAddress from "@/src/components/block/DeliveryAddress";
 import SelectedCoffeesCart from "@/src/components/block/SelectedCoffeesCart";
 import { toast } from "react-toastify";
 
+import { auth, db } from "@/src/modules/firebase-auth/config";
+import firebase from "firebase/compat/app";
+
 type Props = {};
 
 const Cart = ({ ...props }: Props) => {
@@ -26,7 +29,7 @@ const Cart = ({ ...props }: Props) => {
     };
   });
 
-  const total = formatPrice(
+  const itemPrice = formatPrice(
     cart.reduce((sumTotal, product) => {
       sumTotal += product.price * product.quantity;
 
@@ -34,7 +37,7 @@ const Cart = ({ ...props }: Props) => {
     }, 0),
   );
 
-  const totalSumFrete = formatPrice(
+  const totalSumDelivery = formatPrice(
     cart.reduce((sumTotal, product) => {
       sumTotal += product.price * product.quantity;
 
@@ -42,7 +45,7 @@ const Cart = ({ ...props }: Props) => {
     }, 0) + free,
   );
 
-  const sumFree = formatPrice(free);
+  const sumDelivery = formatPrice(free);
 
   const handleProductIncrement = (product: ICoffeCard) => {
     const incrementArguments = {
@@ -71,6 +74,10 @@ const Cart = ({ ...props }: Props) => {
     removeProduct(productId);
   };
 
+  // TODO :: Create a separate module
+  // TODO :: Change your order details
+  // TODO :: Create collections All Orders
+
   const handleFormSubmit = async () => {
     const isEmpty = checkForEmptyFields(addressValidation);
     if (isEmpty) {
@@ -78,15 +85,37 @@ const Cart = ({ ...props }: Props) => {
       return;
     }
 
-    // In the future, this will be the logic to handle the form submission
+    try {
+      if (auth.currentUser) {
+        // User is authenticated, save the order in user's collection
+        await db.collection("users").doc(auth.currentUser?.uid).collection("orders_users").add({
+          firstName: addressValidation.firstName,
+          secondName: addressValidation.secondName,
+          mobileNumber: addressValidation.mobileNumber,
+          city: addressValidation.city,
+          postCode: addressValidation.postCode,
+          fullAddress: addressValidation.fullAddress,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          totalSumDelivery: totalSumDelivery,
+        });
+      } else {
+        // User is not authenticated, save the order in a general collection
+        await db.collection("orders").add({
+          firstName: addressValidation.firstName,
+          secondName: addressValidation.secondName,
+          mobileNumber: addressValidation.mobileNumber,
+          city: addressValidation.city,
+          postCode: addressValidation.postCode,
+          fullAddress: addressValidation.fullAddress,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          totalSumDelivery: totalSumDelivery,
+        });
+      }
 
-    if (!isEmpty) {
-      console.log(addressValidation.firstName);
-      console.log(addressValidation.secondName);
-      console.log(addressValidation.mobileNumber);
-      console.log(addressValidation.city);
-      console.log(addressValidation.postCode);
-      console.log(addressValidation.fullAddress);
+      toast.success("Order has been placed successfully");
+    } catch (error) {
+      console.error("Error placing order:", error);
+      toast.error("Error placing order");
     }
   };
 
@@ -105,10 +134,10 @@ const Cart = ({ ...props }: Props) => {
           handleProductIncrement={handleProductIncrement}
           handleProductDecrement={handleProductDecrement}
           cart={cart}
-          total={total}
-          sumFree={sumFree}
+          itemPrice={itemPrice}
+          sumDelivery={sumDelivery}
           cartFormatted={cartFormatted}
-          totalSumFrete={totalSumFrete}
+          totalSumDelivery={totalSumDelivery}
         />
         <button
           className="mt-[24px] bg-yellow-500 text-white w-full py-[12px] uppercase text-[14px] rounded-[6px] font-roboto font-normal hover:brightness-90 transition-all cursor-pointer disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:brightness-100"

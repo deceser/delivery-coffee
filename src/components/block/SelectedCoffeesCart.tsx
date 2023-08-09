@@ -10,10 +10,10 @@ type Props = {
   handleProductIncrement: (product: ICoffeCard) => void;
   handleProductDecrement: (product: ICoffeCard) => void;
   cart: ICoffeCard[];
-  total: string;
-  sumFree: string;
+  itemPrice: string;
+  sumDelivery: string;
   cartFormatted: ICoffeCard[];
-  totalSumFrete: string;
+  totalSumDelivery: string;
 };
 
 const SelectedCoffeesCart = ({ ...props }: Props) => {
@@ -22,10 +22,10 @@ const SelectedCoffeesCart = ({ ...props }: Props) => {
     handleProductIncrement,
     handleProductDecrement,
     cart,
-    total,
-    sumFree,
+    itemPrice,
+    sumDelivery,
     cartFormatted,
-    totalSumFrete,
+    totalSumDelivery,
   } = props;
   return (
     <div className="bg-gray-100 p-[40px] mt-[15px] rounded-tl-[6px]  rounded-tr-[44px] rounded-br-[6px] rounded-bl-[44px]">
@@ -68,16 +68,16 @@ const SelectedCoffeesCart = ({ ...props }: Props) => {
         <div className="mt-[24px] flex flex-col gap-[12px]">
           <div className="flex items-center font-roboto font-normal text-[14px] text-gray-300 justify-between">
             <span>Total items</span>
-            <span>{total}</span>
+            <span>{itemPrice}</span>
           </div>
 
           <div className="flex items-center font-roboto font-normal text-[14px] text-gray-300 justify-between">
             <span>Delivery</span>
-            <span>{sumFree}</span>
+            <span>{sumDelivery}</span>
           </div>
           <div className="flex items-center justify-between text-[20px] font-bold text-brow-400">
             <span>Total</span>
-            <span>{totalSumFrete}</span>
+            <span>{totalSumDelivery}</span>
           </div>
         </div>
       )}
