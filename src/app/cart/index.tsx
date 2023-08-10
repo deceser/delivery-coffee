@@ -3,8 +3,13 @@
 import React from "react";
 
 import { useCart } from "@/src/hooks/useCart";
-import { ICoffeCard } from "@/src/models/coffee-card";
 import { formatPrice } from "@/src/helpers/farmatPrice";
+
+import { useValidation } from "@/src/hooks/useValidation";
+import { useInput } from "@/src/hooks/useInput";
+import { IAddress } from "@/src/models/address";
+
+import { ICoffeCard } from "@/src/models/coffee-card";
 
 import { CartOrderSubmit } from "@/src/modules/firebase/cart-order-submit";
 
@@ -16,8 +21,23 @@ import SelectedCoffeesCart from "@/src/components/block/SelectedCoffeesCart";
 type Props = {};
 
 const Cart = ({ ...props }: Props) => {
-  const { cart, free, updateProductAmount, removeProduct, checkForEmptyFields, addressValidation } =
+  const { cart, free, updateProductAmount, removeProduct, addressValidation, checkForEmptyFields } =
     useCart();
+  // const { checkForEmptyFields, addressValidation, handleOnChange } = useValidation();
+  // const initialAddress: IAddress = {
+  //   firstName: "",
+  //   secondName: "",
+  //   mobileNumber: "",
+  //   city: "",
+  //   postCode: "",
+  //   fullAddress: "",
+  // };
+  // const { values } = useInput(initialAddress);
+
+  // console.log(values);
+
+  // TODO :: will need fix bug useValidation
+  // console.log(addressValidation);
 
   const cartFormatted = cart.map((product) => {
     return {
