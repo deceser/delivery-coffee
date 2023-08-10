@@ -63,12 +63,12 @@ export const handleFormSubmit = async (formData: FormData) => {
         .add(orderData);
 
       // Additionally, save the order in the general collection
-      await db.collection("orders").add(orderData);
+      await db.collection("orders_all").add(orderData);
     }
 
     // User is not authenticated, save the order in a general collection
     if (!auth.currentUser) {
-      await db.collection("orders").add(orderData);
+      await db.collection("orders_all").add(orderData);
     }
 
     toast.success("Order has been placed successfully");
