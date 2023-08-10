@@ -6,7 +6,7 @@ import { ShoppingCartSimple } from "phosphor-react";
 
 import { useCart } from "@/src/hooks/useCart";
 import { Location } from "@/src/modules/location";
-import { GoogleAuth } from "@/src/modules/firebase-auth/google";
+import { GoogleAuth } from "@/src/modules/firebase/google-auth";
 
 type Props = {};
 

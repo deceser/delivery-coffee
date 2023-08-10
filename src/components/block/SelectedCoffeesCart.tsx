@@ -13,7 +13,7 @@ type Props = {
   itemPrice: string;
   sumDelivery: string;
   cartFormatted: ICoffeCard[];
-  totalSumDelivery: string;
+  totalSumWithDelivery: string;
 };
 
 const SelectedCoffeesCart = ({ ...props }: Props) => {
@@ -25,7 +25,7 @@ const SelectedCoffeesCart = ({ ...props }: Props) => {
     itemPrice,
     sumDelivery,
     cartFormatted,
-    totalSumDelivery,
+    totalSumWithDelivery,
   } = props;
   return (
     <div className="bg-gray-100 p-[40px] mt-[15px] rounded-tl-[6px]  rounded-tr-[44px] rounded-br-[6px] rounded-bl-[44px]">
@@ -77,7 +77,7 @@ const SelectedCoffeesCart = ({ ...props }: Props) => {
           </div>
           <div className="flex items-center justify-between text-[20px] font-bold text-brow-400">
             <span>Total</span>
-            <span>{totalSumDelivery}</span>
+            <span>{totalSumWithDelivery}</span>
           </div>
         </div>
       )}

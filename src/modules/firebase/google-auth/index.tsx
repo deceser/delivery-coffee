@@ -7,7 +7,7 @@ import SpinerBtn from "./components/SpinerBtn";
 
 import { IUser } from "@/src/models/user";
 import { useUser } from "./hooks/useUser";
-import { googleProvider, auth, db } from "@/src/modules/firebase-auth/config";
+import { googleProvider, auth, db } from "@/src/modules/firebase/config";
 
 export const GoogleAuth = () => {
   const { user, updateUser, load } = useUser();
