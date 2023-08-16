@@ -18,6 +18,7 @@ interface CartContextData {
   handleAddNewProductInCart: (product: ICoffeCard) => void;
   updateProductAmount: ({ productId, amount }: { productId: string; amount: number }) => void;
   removeProduct: (productId: string) => void;
+  removeAllProductCart: () => void;
   handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   checkForEmptyFields: (address: IAddress) => boolean;
   setAddressValidation: React.Dispatch<React.SetStateAction<IAddress>>;
@@ -87,6 +88,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     const updatedCart = cart.filter((cartItem) => cartItem.id !== productId);
     setCart(updatedCart);
     localStorage.setItem("@CoffeeDelivery:cart", JSON.stringify(updatedCart));
+  };
+
+  const removeAllProductCart = () => {
+    setCart([]);
+    localStorage.removeItem("@CoffeeDelivery:cart");
   };
 
   React.useEffect(() => {
@@ -163,6 +169,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         handleAddNewProductInCart,
         updateProductAmount,
         removeProduct,
+        removeAllProductCart,
         products,
         load,
         addressValidation,

@@ -15,6 +15,7 @@ type Props = {
   addressValidation: IAddress;
 
   checkForEmptyFields: (fields: any) => boolean;
+  removeAllProductCart: () => void;
 };
 
 export const CartOrderSubmit = ({ ...props }: Props) => {
@@ -25,6 +26,7 @@ export const CartOrderSubmit = ({ ...props }: Props) => {
     sumDelivery,
     totalSumWithDelivery,
     checkForEmptyFields,
+    removeAllProductCart,
   } = props;
 
   return (
@@ -36,6 +38,7 @@ export const CartOrderSubmit = ({ ...props }: Props) => {
       addressValidation={addressValidation}
       checkForEmptyFields={checkForEmptyFields}
       handleFormSubmit={handleFormSubmit}
+      removeAllProductCart={removeAllProductCart}
     />
   );
 };

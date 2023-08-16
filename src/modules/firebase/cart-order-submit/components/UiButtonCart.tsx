@@ -11,6 +11,7 @@ type Props = {
   addressValidation: IAddress;
 
   checkForEmptyFields: (fields: any) => boolean;
+  removeAllProductCart: () => void;
 
   handleFormSubmit: (formData: {
     cart: ICoffeCard[];
@@ -19,6 +20,7 @@ type Props = {
     sumDelivery: string;
     totalSumWithDelivery: string;
     checkForEmptyFields: (fields: any) => boolean;
+    removeAllProductCart: () => void;
   }) => Promise<void>;
 };
 
@@ -31,6 +33,7 @@ const UiButtonCart = ({ ...props }: Props) => {
     totalSumWithDelivery,
     checkForEmptyFields,
     handleFormSubmit,
+    removeAllProductCart,
   } = props;
 
   const formData = {
@@ -40,6 +43,7 @@ const UiButtonCart = ({ ...props }: Props) => {
     sumDelivery,
     totalSumWithDelivery,
     checkForEmptyFields,
+    removeAllProductCart,
   };
 
   return (

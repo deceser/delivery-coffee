@@ -12,6 +12,7 @@ type FormData = {
   sumDelivery: string;
   totalSumWithDelivery: string;
   checkForEmptyFields: (fields: any) => boolean;
+  removeAllProductCart: () => void;
 };
 
 export const handleFormSubmit = async (formData: FormData) => {
@@ -22,6 +23,7 @@ export const handleFormSubmit = async (formData: FormData) => {
     sumDelivery,
     totalSumWithDelivery,
     checkForEmptyFields,
+    removeAllProductCart,
   } = formData;
 
   const isEmpty = checkForEmptyFields(addressValidation);
@@ -71,6 +73,7 @@ export const handleFormSubmit = async (formData: FormData) => {
       await db.collection("orders_all").add(orderData);
     }
 
+    removeAllProductCart();
     toast.success("Order has been placed successfully");
   } catch (error) {
     console.error("Error placing order:", error);

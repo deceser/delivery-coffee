@@ -16,8 +16,15 @@ import SelectedCoffeesCart from "@/src/components/block/SelectedCoffeesCart";
 type Props = {};
 
 const Cart = ({ ...props }: Props) => {
-  const { cart, free, updateProductAmount, removeProduct, checkForEmptyFields, addressValidation } =
-    useCart();
+  const {
+    cart,
+    free,
+    updateProductAmount,
+    removeProduct,
+    removeAllProductCart,
+    checkForEmptyFields,
+    addressValidation,
+  } = useCart();
 
   const cartFormatted = cart.map((product) => {
     return {
@@ -100,6 +107,7 @@ const Cart = ({ ...props }: Props) => {
           totalSumWithDelivery={totalSumWithDelivery}
           addressValidation={addressValidation}
           checkForEmptyFields={checkForEmptyFields}
+          removeAllProductCart={removeAllProductCart}
         />
       </div>
     </section>
