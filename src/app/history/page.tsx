@@ -1,18 +1,18 @@
 import React from "react";
 import { Metadata } from "next";
 
-import Cart from "./index";
+import HistoryOrder from "./index";
 
 export const metadata: Metadata = {
-  title: "Coffee Delivery | Cart",
+  title: "Coffee Delivery | History",
   description: "Coffee Delivery",
 };
 
 type Props = {};
 
-const CartPage = ({ ...props }: Props) => {
+const HistoryPage = ({ ...props }: Props) => {
   const {} = props;
-  return <Cart />;
+  return <HistoryOrder />;
 };
 
-export default CartPage;
+export default HistoryPage;

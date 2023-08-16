@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Head from "next/head";
 
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 
@@ -11,14 +10,12 @@ import CoffeeCard from "@/src/components/block/CoffeeCard";
 
 type Props = {};
 
-const HomePage: React.FC = (props: Props) => {
+const HomePage: React.FC = ({ ...props }: Props) => {
+  const {} = props;
   const { products, load } = useCart();
 
   return (
     <>
-      <Head>
-        <title>Coffee Delivery | Home page</title>
-      </Head>
       <section className="mt-[104px] bg-banner bg-cover bg-top bg-no-repeat w-full h-[600px] md:h-[calc(100vh-105px)]">
         <div className="flex items-center justify-between w-full max-w-7xl mx-auto px-8 h-full">
           <div className="flex-1 lg:mr-[56px] mt-[55px]">
