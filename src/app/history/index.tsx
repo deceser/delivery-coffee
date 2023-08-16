@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import AccordionUI from "@/src/components/ui/AccordionUI";
+import { HistoryOrders } from "@/src/modules/firebase/history-orders";
 
 type Props = {};
 
@@ -24,7 +24,7 @@ const HistoryOrder = ({ ...props }: Props) => {
       </section>
 
       <section className="mt-[50px] flex justify-between w-full max-w-7xl mx-auto px-8 h-full ">
-        <AccordionUI />
+        <HistoryOrders />
       </section>
     </>
   );
