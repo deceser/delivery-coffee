@@ -1,14 +1,10 @@
+import Link from "next/link";
 import React from "react";
-import { toast } from "react-toastify";
 
 type Props = {
   displayName?: string;
   email?: string;
   handleLogout: () => void;
-};
-
-const handleClickHistory = () => {
-  toast.warn("Sorry, this feature is currently unavailable");
 };
 
 const Dropdawn = ({ ...props }: Props) => {
@@ -29,12 +25,12 @@ const Dropdawn = ({ ...props }: Props) => {
         </div>
       </div>
       <div className="flex-col justify-start items-start flex">
-        <button
-          onClick={handleClickHistory}
+        <Link
+          href="/history"
           className="text-center text-gray-200 text-xl font-medium leading-7 hover:opacity-50 transition-all"
         >
           My history
-        </button>
+        </Link>
         <button
           onClick={handleLogout}
           className="text-center text-gray-200 text-xl font-medium leading-7 hover:opacity-50 transition-all"

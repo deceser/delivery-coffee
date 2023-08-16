@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import AccordionUI from "@/src/components/ui/AccordionUI";
+
 type Props = {};
 
 const HistoryOrder = ({ ...props }: Props) => {
@@ -21,7 +23,9 @@ const HistoryOrder = ({ ...props }: Props) => {
         </div>
       </section>
 
-      <section className="mt-[50px] flex justify-between w-full max-w-7xl mx-auto px-8 h-full "></section>
+      <section className="mt-[50px] flex justify-between w-full max-w-7xl mx-auto px-8 h-full ">
+        <AccordionUI />
+      </section>
     </>
   );
 };
