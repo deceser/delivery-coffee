@@ -1,30 +1,44 @@
 "use client";
 
-import React, { createContext } from "react";
+import React from "react";
 import { toast } from "react-toastify";
 
 import { api } from "@/src/lib/axios";
 import { formatPrice } from "@/src/helpers/farmatPrice";
-import { ICoffeCard } from "@/src/models/coffee-card";
 
+import { ICoffeCard } from "@/src/models/coffee-card";
+import { IAddress } from "../models/address";
 interface CartContextData {
   free: number;
   load: boolean;
   cart: ICoffeCard[];
   products: ICoffeCard[];
+  addressValidation: IAddress;
 
   handleAddNewProductInCart: (product: ICoffeCard) => void;
   updateProductAmount: ({ productId, amount }: { productId: string; amount: number }) => void;
   removeProduct: (productId: string) => void;
+  removeAllProductCart: () => void;
+  handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  checkForEmptyFields: (address: IAddress) => boolean;
+  setAddressValidation: React.Dispatch<React.SetStateAction<IAddress>>;
 }
 
-export const CartContext = createContext({} as CartContextData);
+export const CartContext = React.createContext({} as CartContextData);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = React.useState<ICoffeCard[]>([]);
   const [free, setFree] = React.useState<number>(7.8);
   const [products, setProducts] = React.useState<ICoffeCard[]>([]);
   const [load, setLoad] = React.useState<boolean>(false);
+  const [addressValidation, setAddressValidation] = React.useState<IAddress>({
+    firstName: "",
+    secondName: "",
+    mobileNumber: "",
+    city: "",
+    postCode: "",
+    fullAddress: "",
+  });
 
   const handleAddNewProductInCart = (product: ICoffeCard) => {
     const findProduct = cart.find((p) => p.id === product.id);
@@ -76,6 +90,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem("@CoffeeDelivery:cart", JSON.stringify(updatedCart));
   };
 
+  const removeAllProductCart = () => {
+    setCart([]);
+    localStorage.removeItem("@CoffeeDelivery:cart");
+  };
+
   React.useEffect(() => {
     const storagedCart = localStorage.getItem("@CoffeeDelivery:cart");
 
@@ -85,6 +104,38 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       setCart([]);
     }
   }, []);
+
+  // ---- validation order ----
+
+  const isNullOrWhitespace = (value: string | undefined): boolean => {
+    return value === undefined || value.trim() === "";
+  };
+
+  const checkForEmptyFields = (address: IAddress) => {
+    for (const key in address) {
+      if (address.hasOwnProperty(key)) {
+        const fieldValue = address[key as keyof IAddress];
+        if (isNullOrWhitespace(fieldValue) && key !== "secondName") {
+          return true; // If at least one non-empty field (except secondName) is empty, return true
+        }
+      }
+    }
+
+    return false; // All fields are filled
+  };
+
+  // ...
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const field = e.target.name; // Get the field name
+    const newValue: string = e.target.value;
+    setAddressValidation((prevAddress) => ({
+      ...prevAddress,
+      [field]: newValue, // Update the corresponding field
+    }));
+  };
+
+  // -----
 
   // ----- get -----
 
@@ -118,8 +169,13 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         handleAddNewProductInCart,
         updateProductAmount,
         removeProduct,
+        removeAllProductCart,
         products,
         load,
+        addressValidation,
+        handleOnChange,
+        checkForEmptyFields,
+        setAddressValidation,
       }}
     >
       {children}

@@ -1,38 +1,13 @@
 import React from "react";
 import { MapPin } from "phosphor-react";
 
-import useLocationData from "../hooks/useGeolocation";
+type Props = {
+  loading: boolean;
+  currentLocationData: any;
+};
 
-const LocationComponent: React.FC = () => {
-  const { loading, locationData, getLocation } = useLocationData();
-  const [currentLocationData, setCurrentLocationData] = React.useState<any | null>(null);
-
-  React.useEffect(() => {
-    const getLocationDataFromLocalStorage = () => {
-      try {
-        const data = localStorage.getItem("locationData");
-        if (data) {
-          return JSON.parse(data);
-        }
-      } catch (error) {
-        console.error("Error while getting location data from local storage:", error);
-      }
-      return null;
-    };
-
-    // Get the location data from local storage or the API fetch
-    const dataFromLocalStorage = getLocationDataFromLocalStorage();
-    setCurrentLocationData(dataFromLocalStorage);
-
-    // Automatically fetch location data when the component mounts
-    getLocation();
-  }, []);
-
-  React.useEffect(() => {
-    // Update the currentLocationData when locationData changes
-    setCurrentLocationData(locationData);
-  }, [locationData]);
-
+const LocationComponent = ({ ...props }: Props) => {
+  const { loading, currentLocationData } = props;
   return (
     <div>
       {currentLocationData ? (
@@ -51,4 +26,4 @@ const LocationComponent: React.FC = () => {
   );
 };
 
-export { LocationComponent };
+export default LocationComponent;

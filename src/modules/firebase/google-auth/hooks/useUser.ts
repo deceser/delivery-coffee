@@ -8,7 +8,7 @@ if (!secretKey) {
   throw new Error("NEXT_PUBLIC_SECRET_KEY environment variable is not defined.");
 }
 
-export const useUser = () => {
+const useUser = () => {
   const [user, setUser] = React.useState<IUser | null>(null);
   const [load, setLoad] = React.useState<boolean>(false);
 
@@ -44,3 +44,5 @@ export const useUser = () => {
 
   return { user, updateUser, load };
 };
+
+export { useUser };

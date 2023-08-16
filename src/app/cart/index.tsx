@@ -6,6 +6,8 @@ import { useCart } from "@/src/hooks/useCart";
 import { ICoffeCard } from "@/src/models/coffee-card";
 import { formatPrice } from "@/src/helpers/farmatPrice";
 
+import { CartOrderSubmit } from "@/src/modules/firebase/cart-order-submit";
+
 import Payment from "@/src/components/block/Payment";
 import PersonalData from "@/src/components/block/PersonalData";
 import DeliveryAddress from "@/src/components/block/DeliveryAddress";
@@ -14,7 +16,15 @@ import SelectedCoffeesCart from "@/src/components/block/SelectedCoffeesCart";
 type Props = {};
 
 const Cart = ({ ...props }: Props) => {
-  const { cart, free, updateProductAmount, removeProduct } = useCart();
+  const {
+    cart,
+    free,
+    updateProductAmount,
+    removeProduct,
+    removeAllProductCart,
+    checkForEmptyFields,
+    addressValidation,
+  } = useCart();
 
   const cartFormatted = cart.map((product) => {
     return {
@@ -24,7 +34,7 @@ const Cart = ({ ...props }: Props) => {
     };
   });
 
-  const total = formatPrice(
+  const itemPrice = formatPrice(
     cart.reduce((sumTotal, product) => {
       sumTotal += product.price * product.quantity;
 
@@ -32,7 +42,7 @@ const Cart = ({ ...props }: Props) => {
     }, 0),
   );
 
-  const totalSumFrete = formatPrice(
+  const totalSumWithDelivery = formatPrice(
     cart.reduce((sumTotal, product) => {
       sumTotal += product.price * product.quantity;
 
@@ -40,7 +50,7 @@ const Cart = ({ ...props }: Props) => {
     }, 0) + free,
   );
 
-  const sumFree = formatPrice(free);
+  const sumDelivery = formatPrice(free);
 
   const handleProductIncrement = (product: ICoffeCard) => {
     const incrementArguments = {
@@ -84,10 +94,20 @@ const Cart = ({ ...props }: Props) => {
           handleProductIncrement={handleProductIncrement}
           handleProductDecrement={handleProductDecrement}
           cart={cart}
-          total={total}
-          sumFree={sumFree}
+          itemPrice={itemPrice}
+          sumDelivery={sumDelivery}
           cartFormatted={cartFormatted}
-          totalSumFrete={totalSumFrete}
+          totalSumWithDelivery={totalSumWithDelivery}
+        />
+
+        <CartOrderSubmit
+          cart={cart}
+          itemPrice={itemPrice}
+          sumDelivery={sumDelivery}
+          totalSumWithDelivery={totalSumWithDelivery}
+          addressValidation={addressValidation}
+          checkForEmptyFields={checkForEmptyFields}
+          removeAllProductCart={removeAllProductCart}
         />
       </div>
     </section>

@@ -10,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@firebase/auth": "^1.1.0",
+    "@firebase/firestore": "^4.1.0",
     "@next/env": "^13.4.12",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",

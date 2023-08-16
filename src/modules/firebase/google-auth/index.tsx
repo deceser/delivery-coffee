@@ -1,13 +1,15 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-import { UserItem } from "./UserItem";
+import UserItem from "./components/UserItem";
+import UiButton from "./components/UiButton";
+import SpinerBtn from "./components/SpinerBtn";
 
 import { IUser } from "@/src/models/user";
-import { useUser } from "../hooks/useUser";
-import { googleProvider, auth } from "../../config";
+import { useUser } from "./hooks/useUser";
+import { googleProvider, auth, db } from "@/src/modules/firebase/config";
 
-const GoogleAuth = () => {
+export const GoogleAuth = () => {
   const { user, updateUser, load } = useUser();
   const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -16,6 +18,7 @@ const GoogleAuth = () => {
 
     try {
       setLoading(true);
+
       const result = await auth.signInWithPopup(googleProvider);
       const { uid, displayName, email, photoURL } = result.user as IUser;
       const userData: IUser = {
@@ -24,8 +27,15 @@ const GoogleAuth = () => {
         email,
         photoURL,
       };
-      updateUser(userData);
 
+      await db.collection("users").doc(uid).set({
+        uid,
+        displayName,
+        email,
+        photoURL,
+      });
+
+      updateUser(userData);
       localStorage.setItem("userData", JSON.stringify(userData));
     } catch (error) {
       console.error("Error during Google login:", error);
@@ -43,21 +53,7 @@ const GoogleAuth = () => {
   return (
     <>
       {load || loading ? (
-        <button
-          className="flex items-center gap-[4px] p-[8px] text-white rounded-[6px] select-none bg-purple-500"
-          disabled
-        >
-          <svg
-            className="animate-spin h-5 w-5 "
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            fill="white"
-            viewBox="0 0 256 256"
-          >
-            <path d="M232,128a104,104,0,0,1-208,0c0-41,23.81-78.36,60.66-95.27a8,8,0,0,1,6.68,14.54C60.15,61.59,40,93.27,40,128a88,88,0,0,0,176,0c0-34.73-20.15-66.41-51.34-80.73a8,8,0,0,1,6.68-14.54C208.19,49.64,232,87,232,128Z"></path>
-          </svg>
-        </button>
+        <SpinerBtn />
       ) : user ? (
         <UserItem
           photoURL={user.photoURL}
@@ -66,15 +62,8 @@ const GoogleAuth = () => {
           handleLogout={handleLogout}
         />
       ) : (
-        <button
-          onClick={handleGoogleLogin}
-          className="flex items-center gap-[4px] p-[8px] text-white rounded-[6px] select-none bg-purple-500 hover:brightness-90 transition-all"
-        >
-          Log In
-        </button>
+        <UiButton handleGoogleLogin={handleGoogleLogin}>Log In</UiButton>
       )}
     </>
   );
 };
-
-export { GoogleAuth };
