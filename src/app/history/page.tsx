@@ -15,7 +15,7 @@ const HistoryPage = ({ ...props }: Props) => {
   const {} = props;
   return (
     <PrivateRoute>
-      <HistoryOrder />;
+      <HistoryOrder />
     </PrivateRoute>
   );
 };

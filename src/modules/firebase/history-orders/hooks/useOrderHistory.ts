@@ -2,40 +2,60 @@ import React from "react";
 import { format } from "date-fns";
 
 import { auth, db } from "@/src/modules/firebase/config";
+
+import { IUser } from "@/src/models/user";
 import { IOrderUser } from "@/src/models/order-user";
 
 export const useOrderHistory = () => {
+  const [load, setLoad] = React.useState<boolean>(true);
   const [userOrders, setUserOrders] = React.useState<IOrderUser[]>([]);
+  const [currentUser, setCurrentUser] = React.useState<IUser | null>(null);
 
   React.useEffect(() => {
-    const currentUser = auth.currentUser;
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const userForState: IUser = {
+          uid: user.uid,
+          displayName: user.displayName || undefined,
+          email: user.email || undefined,
+          photoURL: user.photoURL || undefined,
+        };
 
-    if (currentUser) {
-      const userRef = db.collection("users").doc(currentUser.uid);
-      const ordersRef = userRef.collection("orders_users");
+        setCurrentUser(userForState);
+        setLoad(true);
 
-      ordersRef.get().then((querySnapshot) => {
-        const orders: IOrderUser[] = [];
-        querySnapshot.forEach((doc) => {
-          const orderData = doc.data() as IOrderUser;
+        const userRef = db.collection("users").doc(user.uid);
+        const ordersRef = userRef.collection("orders_users");
 
-          // Convert timestamp to readable format
-          const formattedDate = format(
-            new Date(
-              orderData.createdAt.seconds * 1000 + orderData.createdAt.nanoseconds / 1000000,
-            ),
-            "MMMM d, yyyy 'at' h:mm:ss a 'UTC'xxx",
-          );
+        ordersRef.get().then((querySnapshot) => {
+          const orders: IOrderUser[] = [];
+          querySnapshot.forEach((doc) => {
+            const orderData = doc.data() as IOrderUser;
 
-          orders.push({
-            ...orderData,
-            createdAt: formattedDate,
+            const formattedDate = format(
+              new Date(
+                orderData.createdAt.seconds * 1000 + orderData.createdAt.nanoseconds / 1000000,
+              ),
+              "MMMM d, yyyy 'at' h:mm:ss a",
+            );
+
+            orders.push({
+              ...orderData,
+              id: doc.id,
+              createdAt: formattedDate,
+            });
           });
+          setUserOrders(orders);
+          setLoad(false);
         });
-        setUserOrders(orders);
-      });
-    }
+      } else {
+        setCurrentUser(null);
+        setUserOrders([]);
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  return { userOrders };
+  return { userOrders, currentUser, load };
 };
