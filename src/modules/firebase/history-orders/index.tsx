@@ -11,14 +11,10 @@ export const HistoryOrders = ({ ...props }: Props) => {
   const { userOrders, load } = useOrderHistory();
   const [openOrderId, setOpenOrderId] = React.useState<string | null>(null);
 
-  console.log(load ? "loading" : "not load");
-
-  console.log(userOrders);
-
   return (
     <>
       {load ? (
-        <h1>LOAD</h1>
+        <div className="m-auto h-20 w-20 animate-spin rounded-full border-8 border-t-purple-500" />
       ) : (
         <>
           {userOrders.map((order) => (
@@ -26,6 +22,12 @@ export const HistoryOrders = ({ ...props }: Props) => {
               key={order.id}
               orderId={order.id}
               header={order.createdAt}
+              totalSumWithDelivery={order.totalSumWithDelivery}
+              sumDelivery={order.sumDelivery}
+              fullAddress={order.fullAddress}
+              city={order.city}
+              cartItems={order.cart}
+              totalItems={order.itemPrice}
               isOpen={openOrderId === order.id}
               setOpenOrderId={setOpenOrderId}
             />
