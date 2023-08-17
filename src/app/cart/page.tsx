@@ -10,7 +10,8 @@ export const metadata: Metadata = {
 
 type Props = {};
 
-const CartPage = (props: Props) => {
+const CartPage = ({ ...props }: Props) => {
+  const {} = props;
   return <Cart />;
 };
 
