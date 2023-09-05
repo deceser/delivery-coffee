@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
-  const isAuthorized = localStorage.getItem("userData");
+  const isAuthorized =
+    typeof localStorage !== "undefined" && Boolean(localStorage.getItem("userData"));
 
   React.useEffect(() => {
     if (!isAuthorized) {
